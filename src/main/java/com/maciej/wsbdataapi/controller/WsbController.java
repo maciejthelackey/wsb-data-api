@@ -1,12 +1,15 @@
 package com.maciej.wsbdataapi.controller;
 
 import com.maciej.wsbdataapi.model.SoccerPlayer;
+import com.maciej.wsbdataapi.model.WsbResponse;
 import com.maciej.wsbdataapi.service.WsbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class WsbController {
@@ -29,6 +32,9 @@ public class WsbController {
         return wsbService.constructSoccerPlayer(goalScored,playingGame, playerName);
     }
 
-
+    @GetMapping("/wsbData")
+    public List<WsbResponse> callWsbData(@RequestParam String date){
+        return wsbService.callWsbData(date);
+    }
 
 }

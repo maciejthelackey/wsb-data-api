@@ -23,6 +23,8 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation group: 'org.springframework', name: 'spring-webflux', version: '5.3.23'
+	implementation 'org.springframework.boot:spring-boot-starter-reactor-netty:2.7.5'
 }
 
 tasks.named('test') {
