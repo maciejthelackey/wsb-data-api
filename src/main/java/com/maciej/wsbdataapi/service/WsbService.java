@@ -19,7 +19,7 @@ public class WsbService {
         return client.retrieveData(date);
     }
 
-    public List<WsbResponse> callWsbDataticker(List<String> tickers,String date){
+    public List<WsbResponse> callWsbDataticker(List<String> tickers, String date) {
 
         List<String> upperCaseTickers = tickers.stream()
                 .map(String::toUpperCase)
@@ -33,7 +33,7 @@ public class WsbService {
 
     //TODO return only postivie sentiment tickers
 
-    public List<WsbResponse> callSentimentScore(String date){
+    public List<WsbResponse> callSentimentScore(String date) {
 
         return client.retrieveData(date)
                 .stream()
@@ -41,16 +41,21 @@ public class WsbService {
                 .collect(Collectors.toList());
 
 
+    }
 
+    public List<WsbResponse> callNegitiveScore(String date){
 
-
-    // Commands to push to git hub branch
-    // git status | Shows what files have been added your commit
-    // git add . | Adds files to your commit
-    // git commit -m "PUT MESSAGE IN HERE | commits the files you added
-    // git push (Just copy and paste command it gives you to run) | Note: This will error and give you a new command, copy and paste and use that. This pushes your changes to github
-
-    // git checkout -b "feature/ADD-YOU-NAME-HERE" | Creates branch, MAKE SURE YOU RUN THIS ONLY ON MAIN
-}
+        return client.retrieveData(date)
+                .stream()
+                .filter(nS -> nS.getSentimentScore() < 0)
+                .collect(Collectors.toList());
+    }
 }
 
+// Commands to push to git hub branch
+// git status | Shows what files have been added your commit
+// git add . | Adds files to your commit
+// git commit -m "PUT MESSAGE IN HERE | commits the files you added
+// git push (Just copy and paste command it gives you to run) | Note: This will error and give you a new command, copy and paste and use that. This pushes your changes to github
+
+// git checkout -b "feature/ADD-YOU-NAME-HERE" | Creates branch, MAKE SURE YOU RUN THIS ONLY ON MAIN

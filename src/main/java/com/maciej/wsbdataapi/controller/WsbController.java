@@ -32,4 +32,8 @@ public class WsbController {
     public List<WsbResponse> callSentimentScore(@RequestParam String date){
         return wsbService.callSentimentScore(date);
     }
+    @GetMapping("/wsbData/negative")
+    public List<WsbResponse> callNegitiveScore(@RequestParam String date){
+        return wsbService.callNegitiveScore(date);
+    }
 }
