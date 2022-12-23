@@ -28,4 +28,8 @@ public class WsbController {
     public List<WsbResponse> callWsbDataTicker(@RequestParam List<String> tickers, @RequestParam String date){
         return wsbService.callWsbDataticker(tickers,date);
     }
+    @GetMapping("/wsbData/score")
+    public List<WsbResponse> callSentimentScore(@RequestParam String date){
+        return wsbService.callSentimentScore(date);
+    }
 }

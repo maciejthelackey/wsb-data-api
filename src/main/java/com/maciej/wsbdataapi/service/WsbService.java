@@ -1,7 +1,6 @@
 package com.maciej.wsbdataapi.service;
 
 import com.maciej.wsbdataapi.client.WsbClient;
-import com.maciej.wsbdataapi.model.SoccerPlayer;
 import com.maciej.wsbdataapi.model.WsbResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +33,15 @@ public class WsbService {
 
     //TODO return only postivie sentiment tickers
 
+    public List<WsbResponse> callSentimentScore(String date){
+
+        return client.retrieveData(date)
+                .stream()
+                .filter(s -> s.getSentimentScore() > 0)
+                .collect(Collectors.toList());
+
+
+
 
 
     // Commands to push to git hub branch
@@ -44,3 +52,5 @@ public class WsbService {
 
     // git checkout -b "feature/ADD-YOU-NAME-HERE" | Creates branch, MAKE SURE YOU RUN THIS ONLY ON MAIN
 }
+}
+
