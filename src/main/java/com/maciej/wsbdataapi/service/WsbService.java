@@ -31,4 +31,7 @@ public class WsbService {
                 .filter(stock -> upperCaseTickers.contains(stock.getTicker()))
                 .collect(Collectors.toList());
     }
+
+    //TODO return only postivie sentiment tickers
+
 }
