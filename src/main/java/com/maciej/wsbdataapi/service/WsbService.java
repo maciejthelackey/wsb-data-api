@@ -35,7 +35,7 @@ public class WsbService {
     //TODO return only postivie sentiment tickers
 
 
-
+    // test comment
     // Commands to push to git hub branch
     // git status | Shows what files have been added your commit
     // git add . | Adds files to your commit
