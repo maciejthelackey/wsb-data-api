@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class WsbService {
@@ -14,33 +15,20 @@ public class WsbService {
     @Autowired
     WsbClient client;
 
-
-    public int add10(int inputNumber) {
-        return inputNumber + 10;
-    }
-
-    public SoccerPlayer constructSoccerPlayer(int goalScored, boolean playingGame, String playerName) {
-
-        SoccerPlayer tempSoccerPlayer = SoccerPlayer.builder()
-                .goalsScored(goalScored)
-                .playingGame(playingGame)
-                .playerName(playerName)
-                .build();
-
-        return tempSoccerPlayer;
-    }
-
-
     public List<WsbResponse> callWsbData(String date) {
 
         return client.retrieveData(date);
-
     }
 
-    public List<WsbResponse> callWsbDataticker(String ticker,String date){
+    public List<WsbResponse> callWsbDataticker(List<String> tickers,String date){
 
+        List<String> upperCaseTickers = tickers.stream()
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
 
-        return client.retrieveTickerData(ticker,date);
+        return client.retrieveData(date)
+                .stream()
+                .filter(stock -> upperCaseTickers.contains(stock.getTicker()))
+                .collect(Collectors.toList());
     }
-
 }

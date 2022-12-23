@@ -26,20 +26,4 @@ public class WsbClient {
         return listResponse;
 
     }
-
-    public List<WsbResponse> retrieveTickerData(String ticker,String date){
-
-        WebClient client = WebClient.create("https://tradestie.com/api/v1/apps");
-
-        WsbResponse[] response = client.get()
-                .uri("/reddit")
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .retrieve()
-                .bodyToMono(WsbResponse[].class)
-                .block();
-
-        List<WsbResponse> listResponse = Arrays.asList(response);
-        return listResponse;
-
-    }
 }
