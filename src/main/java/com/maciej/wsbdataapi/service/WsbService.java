@@ -34,4 +34,11 @@ public class WsbService {
 
     //TODO return only postivie sentiment tickers
 
+
+
+    // Commands to push to git hub branch
+    // git status | Shows what files have been added your commit
+    // git add . | Adds files to your commit
+    // git commit -m "PUT MESSAGE IN HERE | commits the files you added
+    // git push (Just copy and paste command it gives you to run) | Note: This will error and give you a new command, copy and paste and use that. This pushes your changes to github
 }
