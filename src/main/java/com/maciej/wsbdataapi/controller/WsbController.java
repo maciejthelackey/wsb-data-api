@@ -36,5 +36,8 @@ public class WsbController {
     public List<WsbResponse> callWsbData(@RequestParam String date){
         return wsbService.callWsbData(date);
     }
-
+    @GetMapping("/wsbDataTicker")
+    public List<WsbResponse> callWsbDataTicker(@RequestParam String ticker,@RequestParam String date){
+        return wsbService.callWsbDataticker(ticker,date);
+    }
 }

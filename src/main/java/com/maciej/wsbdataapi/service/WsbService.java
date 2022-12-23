@@ -14,6 +14,7 @@ public class WsbService {
     @Autowired
     WsbClient client;
 
+
     public int add10(int inputNumber) {
         return inputNumber + 10;
     }
@@ -34,6 +35,12 @@ public class WsbService {
 
         return client.retrieveData(date);
 
+    }
+
+    public List<WsbResponse> callWsbDataticker(String ticker,String date){
+
+
+        return client.retrieveTickerData(ticker,date);
     }
 
 }
