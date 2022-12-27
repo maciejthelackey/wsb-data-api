@@ -36,4 +36,8 @@ public class WsbController {
     public List<WsbResponse> callNegitiveScore(@RequestParam String date){
         return wsbService.callNegitiveScore(date);
     }
+    @GetMapping("wsbData/negativeComments")
+    public List<WsbResponse> callNegativeWithComments(@RequestParam String date){
+        return wsbService.callNegativeWithComments(date);
+    }
 }

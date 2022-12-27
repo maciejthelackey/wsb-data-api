@@ -50,6 +50,14 @@ public class WsbService {
                 .filter(nS -> nS.getSentimentScore() < 0)
                 .collect(Collectors.toList());
     }
+
+    public List<WsbResponse> callNegativeWithComments(String date){
+
+        return client.retrieveData(date)
+                .stream()
+                .filter(nc -> nc.getNoOfComments()>1 && nc.getSentimentScore()<0)
+                .collect(Collectors.toList());
+    }
 }
 
 // Commands to push to git hub branch
