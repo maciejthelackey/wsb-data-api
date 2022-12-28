@@ -1,17 +1,25 @@
 # bot.py
 import os
-import requests
+import json
 import discord
-import random
+import requests
+from discord.ext import commands
+from discord.ext.commands import Bot
 from dotenv import load_dotenv
 
+intents = discord.Intents.all()
+intents.members = True
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+client = Bot(command_prefix='!', intents=intents)
 
-client = discord.Client(intents=discord.Intents.default())
-api_url = "http://localhost:8080/wsbData/negativeComments?date=2"
-response = requests.get(api_url)
-response.json()
+api_url = "http://localhost:8080/wsbData/negativeComments"
+date = 2
+PARAMS = {'date': date}
+r = requests.get(url=api_url, params=PARAMS)
+
+
+# intents = discord.Intents.message_content
 
 
 @client.event
@@ -19,19 +27,24 @@ async def on_ready():
     print(f'{client.user} has connected to Discord!')
 
 
-client.run(TOKEN)
-
-
 @client.event
 async def on_message(message):
     if message.author == client.user:
         return
 
-    test_lol = [api_url]
-
     if message.content == 'testing':
-        response1 = random.choice(test_lol)
-        response1.json()
-        await message.channel.send(response1)
+        response1 = r
 
-        client.run(TOKEN)
+        print(r.text)
+
+        await message.channel.send(response1.text)
+
+
+@client.command()
+async def embed(ctx):
+    embed1 = discord.Embed(title="Sample Embed", url="https://twitter.com/tal_lord",
+                           description="test with info", color=discord.Color.blue())
+    await ctx.send(embed=embed1)
+
+
+client.run(TOKEN)
