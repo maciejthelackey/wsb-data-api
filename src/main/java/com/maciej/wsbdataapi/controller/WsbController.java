@@ -43,4 +43,9 @@ public class WsbController {
     public List<WsbResponse> callNegativeWithComments(@RequestParam String date){
         return wsbService.callNegativeWithComments(date);
     }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("wsbData/specificTicker")
+    public WsbResponse callSpecificTicker(@RequestParam String date,String ticker){
+        return wsbService.callSpecificTicker(date,ticker.toUpperCase()).get(0);
+    }
 }
