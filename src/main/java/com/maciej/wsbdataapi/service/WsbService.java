@@ -58,6 +58,14 @@ public class WsbService {
                 .filter(nc -> nc.getNoOfComments()>1 && nc.getSentimentScore()<0)
                 .collect(Collectors.toList());
     }
+
+    public List<WsbResponse> callSpecificTicker(String date, String ticker){
+
+        return client.retrieveData(date)
+                .stream()
+                .filter(nc -> nc.getTicker().equals(ticker))
+                .collect(Collectors.toList());
+    }
 }
 
 // Commands to push to git hub branch
